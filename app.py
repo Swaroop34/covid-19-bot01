@@ -19,7 +19,7 @@ def webhook():
     r = make_response(res1)
     r.headers['Content-Type'] = 'application/json'
     return r
-
+@app.route('/processRequest', methods=['GET'])
 def processRequest(req):
     sessionID = req.get('responseId')
     result = req.get("queryResult")
