@@ -1,1 +1,1 @@
-web: waitress-serve bot:app
+web: python main.py
