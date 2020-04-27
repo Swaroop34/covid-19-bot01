@@ -9,7 +9,7 @@ from flask_cors import cross_origin
 app = Flask(__name__)
 
 # Getting and sending response to dilogflow
-@app.route('/webhook', methods=['POST'])
+@app.route('/webhook', methods=['POST','GET'])
 @cross_origin()
 def webhook():
     req = request.get_json(silent=True, force=True)
