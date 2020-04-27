@@ -1,1 +1,1 @@
-web: waitress-serve --port=5000 bot:app
+web: waitress-serve bot:app
