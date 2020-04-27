@@ -49,7 +49,7 @@ def processRequest(req):
         c = 'The number of deaths: {}'.format(deaths)
         d = 'The last updated time: {}'.format(time)
 
-        return show, a, b, c, d
+    return show, a, b, c, d
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT',5000))
