@@ -9,7 +9,7 @@ from flask_cors import cross_origin
 app = Flask(__name__)
 
 # Getting and sending response to dilogflow
-@app.route('/webhook', methods=['POST','GET'])
+@app.route('/webhook', methods=['POST'])
 @cross_origin()
 def webhook():
     req = request.get_json(silent=True, force=True)
@@ -19,7 +19,7 @@ def webhook():
     r = make_response(res1)
     r.headers['Content-Type'] = 'application/json'
     return r
-@app.route('/processRequest', methods=['GET'])
+
 def processRequest(req):
     sessionID = req.get('responseId')
     result = req.get("queryResult")
@@ -54,7 +54,7 @@ def processRequest(req):
 if __name__ == '__main__':
     port = int(os.getenv('PORT',5000))
     print("starting app on port %d" % port)
-    app.run(debug=True, port=port, host='0.0.0.0')
+    app.run(debug=False, port=port, host='0.0.0.0')
     #serve(app, host='0.0.0.0', port=5000)
 
 
