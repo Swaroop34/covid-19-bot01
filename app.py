@@ -48,8 +48,10 @@ def processRequest(req):
         b = 'The number of confirmed cases: {}'.format(confirmed_cases)
         c = 'The number of deaths: {}'.format(deaths)
         d = 'The last updated time: {}'.format(time)
+        
+        fullfillmentText = '{}/n {}/n {}/n /n{} /n{}'.format(show, a, b, c, d)
 
-    return show, a, b, c, d
+    return {"fulfillmentText":fullfillmentText}
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT',5000))
