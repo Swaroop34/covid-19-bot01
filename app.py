@@ -49,7 +49,7 @@ def processRequest(req):
         c = 'The number of deaths: {}'.format(deaths)
         d = 'The last updated time: {}'.format(time)
         
-        fullfillmentText = '{}/n {}/n {}/n /n{} /n{}'.format(show, a, b, c, d)
+        fullfillmentText = '{}\n {}\n {}\n {}\n {}\n'.format(show, a, b, c, d)
 
     return {"fulfillmentText":fullfillmentText}
 
