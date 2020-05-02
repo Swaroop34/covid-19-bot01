@@ -26,18 +26,19 @@ def processRequest(req):
     user_says = result.get("queryText")
     parameters = result.get("parameters")
     state_name = parameters.get("state_name")
+    district_name = parameters.get("district_name")
     intent = result.get("intent").get('displayName')
-    if intent == 'no_of_covid19_cases':
-        url = "https://corona-virus-world-and-india-data.p.rapidapi.com/api_india"
+#    if intent == 'no_of_covid19_cases':
+    url = "https://corona-virus-world-and-india-data.p.rapidapi.com/api_india"
 
-        headers = {
-            'x-rapidapi-host': "corona-virus-world-and-india-data.p.rapidapi.com",
-            'x-rapidapi-key': "65a4901e97msh53dc5860f91c9d0p1c5d8fjsn1400fa81c935"
-        }
+    headers = {
+        'x-rapidapi-host': "corona-virus-world-and-india-data.p.rapidapi.com",
+        'x-rapidapi-key': "65a4901e97msh53dc5860f91c9d0p1c5d8fjsn1400fa81c935"
+    }
 
-        response = requests.request("GET", url, headers=headers)
-        data = json.loads(response.text)
-
+    response = requests.request("GET", url, headers=headers)
+    data = json.loads(response.text)
+    if intent == 'state_wise_covid19_cases':
         confirmed_cases = data['state_wise'][state_name]['confirmed']
         active_cases = data['state_wise'][state_name]['active']
         deaths = data['state_wise'][state_name]['deaths']
@@ -52,6 +53,26 @@ def processRequest(req):
         fullfillmentText = '{}\n {}\n {}\n {}\n {}\n'.format(show, a, b, c, d)
 
     return {"fulfillmentText":fullfillmentText}
+
+    elif intent == 'district_wise_covid19_cases':
+        for i in data['state-wise']:
+            
+        confirmed_cases = data['state_wise'][state_name]['confirmed']
+        active_cases = data['state_wise'][state_name]['active']
+        deaths = data['state_wise'][state_name]['deaths']
+        time = data['state_wise'][state_name]['lastupdatedtime']
+
+        show = 'The corona virus "Covid19" information of {} state are as follows:'.format(state_name)
+        a = 'The number of active cases: {}'.format(active_cases)
+        b = 'The number of confirmed cases: {}'.format(confirmed_cases)
+        c = 'The number of deaths: {}'.format(deaths)
+        d = 'The last updated time: {}'.format(time)
+        
+        fullfillmentText = '{}\n {}\n {}\n {}\n {}\n'.format(show, a, b, c, d)
+
+    return {"fulfillmentText":fullfillmentText}
+    
+
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT',5000))
