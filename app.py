@@ -6,14 +6,6 @@ from flask_cors import cross_origin
 
 app = Flask(__name__)
 
-#make app readily available 
-@app.route('/wake', methods=['GET'])
-def wake():
-    app.get('/wake', (req,res) => {
-        return res.send('Hello'):
-    })
-    
-    
     
 # Getting and sending response to dilogflow
 @app.route('/webhook', methods=['POST'])
