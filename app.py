@@ -9,7 +9,7 @@ app = Flask(__name__)
 #make app readily available 
 @app.route('/wake', methods=['GET'])
 def wake():
-    app.get('/webhook', (req,res) => {
+    app.get('/wake', (req,res) => {
         return res.send('Hello'):
     })
     
