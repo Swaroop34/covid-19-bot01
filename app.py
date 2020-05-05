@@ -47,11 +47,11 @@ def processRequest(req):
         recovered = data['state_wise'][state_name]['recovered']
 
         show = 'The Covid-19 info of {} state are as follows:'.format(state_name)
-        a = 'The number of active cases: {}'.format(active_cases)
-        b = 'The number of confirmed cases: {}'.format(confirmed_cases)
-        c = 'The number of deaths: {}'.format(deaths)
+        a = 'The no. of active cases-(people in quarantine): {}'.format(active_cases)
+        b = 'The total no. of confirmed cases: {}'.format(confirmed_cases)
+        c = 'The total no. of deaths: {}'.format(deaths)
         d = 'The number of recovered: {}'.format(recovered)
-        fulfillmentText = '{}\n {}\n {}\n {}\n {}\n'.format(show, a, b, c, d)
+        fulfillmentText = '{}\n {}\n {}\n {}\n {}\n'.format(show, b, a, c, d)
         return {"fulfillmentText": fulfillmentText}
 
     elif intent == 'district_wise_covid19_cases':
@@ -67,15 +67,15 @@ def processRequest(req):
                             recovered = j[x][get_district_name]['recovered']
 
                             show = 'The Covid-19 info of {} district are as follows:'.format(district_name)
-                            a = 'The number of active cases: {}'.format(active_cases)
-                            b = 'The number of confirmed cases: {}'.format(confirmed_cases)
-                            c = 'The number of deaths: {}'.format(deaths)
+                            a = 'The no. of active cases-(people in quarantine): {}'.format(active_cases)
+                            b = 'The total no. of confirmed cases: {}'.format(confirmed_cases)
+                            c = 'The total no. of deaths: {}'.format(deaths)
                             d = 'The number of recovered: {}'.format(recovered)
-                            fulfillmentText = '{}\n {}\n {}\n {}\n {}\n'.format(show, a, b, c, d)
+                            fulfillmentText = '{}\n {}\n {}\n {}\n {}\n'.format(show, b, a, c, d)
                             return {"fulfillmentText": fulfillmentText}
 
     else:
-        fulfillmentText = 'The request is not fulfilled'
+        fulfillmentText = 'Sorry for the incovenience, I did not have the requested data in my database.'
         return {"fulfillmentText": fulfillmentText}
 
 
