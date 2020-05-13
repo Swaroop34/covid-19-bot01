@@ -39,8 +39,23 @@ def processRequest(req):
 
     response = requests.request("GET", url, headers=headers)
     data = json.loads(response.text)
+    
+    if intent == 'india_wide_covid19_cases':
+        confirmed_cases = data['total_values']['confirmed']
+        active_cases = data['total_values']['active']
+        deaths = data['total_values']['deaths']
+        recovered = data['total_values']['recovered']
+        
+        show = 'The Covid-19 info of {} are as follows:'.format('India')
+        a = 'The no. of active cases-(people in quarantine): {}'.format(active_cases)
+        b = 'The total no. of confirmed cases: {}'.format(confirmed_cases)
+        c = 'The total no. of deaths: {}'.format(deaths)
+        d = 'The number of recovered: {}'.format(recovered)
+        fulfillmentText = '{}\n {}\n {}\n {}\n {}\n'.format(show, b, a, c, d)
+        return {"fulfillmentText": fulfillmentText}
 
-    if intent == 'state_wise_covid19_cases':
+    
+    elif intent == 'state_wise_covid19_cases':
         confirmed_cases = data['state_wise'][state_name]['confirmed']
         active_cases = data['state_wise'][state_name]['active']
         deaths = data['state_wise'][state_name]['deaths']
